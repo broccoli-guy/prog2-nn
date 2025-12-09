@@ -80,17 +80,25 @@ for epoch in range(n_epochs):
     print(f'    training loss: {train_loss} ({time_end-time_start:.3f}s)')
     train_loss_log.append(train_loss)
 
+    time_start = time.time()
     val_loss = models.test(model,dataloader_test,loss_fn)
-    print(f'    validation loss: {val_loss}')
+    time_end = time.time()
+    print(f'    validation loss: {val_loss} ({time_end-time_start:.3f}s)')
     val_loss_log.append(val_loss)
+    
 
     #精度を計算する
-    train_acc = models.test_accuracy(model,dataloader_train)
-    train_acc_log.append(train_acc)
-    print(f'    training accuracy: {train_acc*100:.3f}%')
 
+    time_start = time.time()
+    train_acc = models.test_accuracy(model,dataloader_train)
+    time_end = time.time()
+    train_acc_log.append(train_acc)
+    print(f'    training accuracy: {train_acc*100:.3f}% ({time_end-time_start:.3f}s)')
+
+    time_start = time.time()
     val_acc = models.test_accuracy(model,dataloader_test)
-    print(f'    validation accuracy: {val_acc*100:.3f}%')
+    time_end = time.time()
+    print(f'    validation accuracy: {val_acc*100:.3f}% ({time_end-time_start:.3f}s)')
     val_acc_log.append(val_acc)
 
 
