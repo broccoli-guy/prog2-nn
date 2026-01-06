@@ -46,8 +46,14 @@ dataloader_test = torch.utils.data.DataLoader(
 #     print(label_batch.shape)
 #     break
 
+#GPUかCPUを自動的に選ぶ
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+
 #モデルのインスタンスを作成
 model = models.MyModel()
+#モデルを選んだデバイスに転送する
+model.to(device)
 
 #精度を計算する
 # train_acc = models.test_accuracy(model,dataloader_test)
